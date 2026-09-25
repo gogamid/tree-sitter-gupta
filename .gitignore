@@ -50,7 +50,8 @@ zig-out/
 *.zip
 
 # Local scratch fixtures, not distributed
-*.apt.indented
+/example-file.apt.indented
+/test.apt.indented
 test_string.apt
 
 # Vendored upstream docs, not distributed
