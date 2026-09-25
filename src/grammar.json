@@ -55,6 +55,10 @@
         {
           "type": "SYMBOL",
           "name": "operator"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "identifier"
         }
       ]
     },
@@ -257,8 +261,69 @@
       "value": "TRUE|FALSE"
     },
     "comment": {
-      "type": "PATTERN",
-      "value": "!.*"
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "PATTERN",
+          "value": "!.*"
+        },
+        {
+          "type": "TOKEN",
+          "content": {
+            "type": "SEQ",
+            "members": [
+              {
+                "type": "STRING",
+                "value": ".data"
+              },
+              {
+                "type": "REPEAT",
+                "content": {
+                  "type": "CHOICE",
+                  "members": [
+                    {
+                      "type": "PATTERN",
+                      "value": "[^.]"
+                    },
+                    {
+                      "type": "PATTERN",
+                      "value": "\\.[^e]"
+                    },
+                    {
+                      "type": "PATTERN",
+                      "value": "\\.e[^n]"
+                    },
+                    {
+                      "type": "PATTERN",
+                      "value": "\\.en[^d]"
+                    },
+                    {
+                      "type": "PATTERN",
+                      "value": "\\.end[^d]"
+                    },
+                    {
+                      "type": "PATTERN",
+                      "value": "\\.endd[^a]"
+                    },
+                    {
+                      "type": "PATTERN",
+                      "value": "\\.endda[^t]"
+                    },
+                    {
+                      "type": "PATTERN",
+                      "value": "\\.enddat[^a]"
+                    }
+                  ]
+                }
+              },
+              {
+                "type": "STRING",
+                "value": ".enddata"
+              }
+            ]
+          }
+        }
+      ]
     }
   },
   "extras": [

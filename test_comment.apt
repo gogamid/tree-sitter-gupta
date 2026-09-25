@@ -1,4 +1,4 @@
-.data CLASSPROPSSIZE
-0000: C201
+.data SAMPLEBLOCK
+0000: ABCD
 .enddata
 beyond the comment

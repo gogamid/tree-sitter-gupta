@@ -8,7 +8,8 @@ hello
 ---
 
 (source_file
-  (comment))
+  (comment)
+  (identifier))
 
 ==================
 Block comment
@@ -24,11 +25,11 @@ hello
 
 (source_file
   (comment)
-  (comment))
+  (identifier))
 
 ==================
 Mixed comments
-=================
+==================
 
 ! Line comment
 .data
@@ -40,4 +41,24 @@ hello
 
 (source_file
   (comment)
+  (comment)
+  (identifier))
+
+==================
+Separate block comments
+==================
+
+.data
+first block
+.enddata
+middle
+.data
+second block
+.enddata
+
+---
+
+(source_file
+  (comment)
+  (identifier)
   (comment))

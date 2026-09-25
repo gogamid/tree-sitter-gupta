@@ -22,6 +22,7 @@ module.exports = grammar({
         $.double_quoted_string,
         $.single_quoted_string,
         $.operator,
+        $.identifier,
       ),
 
     operator: ($) =>
@@ -64,6 +65,29 @@ module.exports = grammar({
 
     boolean: ($) => /TRUE|FALSE/,
 
-    comment: ($) => /!.*/,
+    comment: ($) =>
+      choice(
+        /!.*/,
+        // `.data` ... `.enddata` block. Content excludes a leading `.enddata`
+        // so several blocks in one file stay separate tokens.
+        token(
+          seq(
+            ".data",
+            repeat(
+              choice(
+                /[^.]/,
+                /\.[^e]/,
+                /\.e[^n]/,
+                /\.en[^d]/,
+                /\.end[^d]/,
+                /\.endd[^a]/,
+                /\.endda[^t]/,
+                /\.enddat[^a]/,
+              ),
+            ),
+            ".enddata",
+          ),
+        ),
+      ),
   },
 });
