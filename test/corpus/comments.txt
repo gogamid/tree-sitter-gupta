@@ -1,0 +1,43 @@
+==================
+Line comment
+==================
+
+! This is a line comment
+hello
+
+---
+
+(source_file
+  (comment))
+
+==================
+Block comment
+==================
+
+.data
+This is a block comment
+with multiple lines
+.enddata
+hello
+
+---
+
+(source_file
+  (comment)
+  (comment))
+
+==================
+Mixed comments
+=================
+
+! Line comment
+.data
+Block comment
+.enddata
+hello
+
+---
+
+(source_file
+  (comment)
+  (comment))

@@ -1,0 +1,7 @@
+Function: Test
+Description: Test function
+Returns
+Actions
+    Set var = "hello" || "world"
+    Call SomeFunc(1, 'hi', var, GetSome())
+! comment

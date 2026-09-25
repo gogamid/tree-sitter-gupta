@@ -1,0 +1,162 @@
+{
+  "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+  "name": "Gupta",
+  "patterns": [
+    {
+      "include": "#keywords"
+    },
+    {
+      "include": "#strings"
+    },
+    {
+      "include": "#comments"
+    },
+    {
+      "include": "#function-declaration"
+    },
+    {
+      "include": "#literals"
+    },
+    {
+      "include": "#calls"
+    }
+  ],
+  "repository": {
+    "keywords": {
+      "patterns": [
+        {
+          "name": "keyword.control.gupta",
+          "match": "\\b(If|Else|While|Break)\\b"
+        },
+        {
+          "name": "keyword.control.flow.gupta",
+          "match": "\\b(Return)\\b"
+        },
+        {
+          "name": "storage.type.gupta",
+          "match": "\\b(String|Boolean|Long String|Number|Set)\\b"
+        },
+        {
+          "match": "(?i:\\b(not|and|or)\\b)",
+          "name": "keyword.operator.gupta"
+        },
+        {
+          "match": "(?i:((?<=(\\+|=|-|\\&|\\\\|/|<|>|\\(|,))\\s*\\b([a-zA-Z_x7f-xff][a-zA-Z0-9_x7f-xff]*?)\\b(?!(\\(|\\.))|\\b([a-zA-Z_x7f-xff][a-zA-Z0-9_x7f-xff]*?)\\b(?=\\s*(\\+|=|-|\\&|\\\\|/|<|>|\\(|\\)|\\[|\\]|\\||\\,))))",
+          "name": "variable.other.gupta"
+        }
+      ]
+    },
+    "function-declaration": {
+      "name": "meta.function.gupta",
+      "begin": "^\\s*\\b(Function):\\s*(\\w*)\\s*.*$",
+      "end": "\\b(Actions)\\b",
+      "beginCaptures": {
+        "1": {
+          "name": "storage.type.function.gupta"
+        },
+        "2": {
+          "name": "entity.name.function"
+        }
+      },
+      "endCaptures": {
+        "1": {
+          "name": "storage.type.function.gupta"
+        }
+      },
+      "patterns": [
+        {
+          "match": "\\b((?:[A-Z]\\w+\\s*/*)+):\\s+(\\w*)",
+          "captures": {
+            "1": {
+              "name": "support.type.gupta"
+            },
+            "2": {
+              "name": "variable.parameter.function.gupta"
+            }
+          }
+        },
+        {
+          "match": "(?i:^\\s*\\b(Call|Parameters|Returns|Static Variables|Local Variables)\\b\\s*)",
+          "name": "storage.type.function.gupta"
+        },
+        {
+          "include": "#comments"
+        },
+        {
+          "match": "^\\s*(Description):\\s+(.*)$",
+          "captures": {
+            "1": {
+              "name": "storage.type.function.gupta"
+            },
+            "2": {
+              "name": "comment.block.documentation.gupta"
+            }
+          }
+        }
+      ]
+    },
+    "strings": {
+      "patterns": [
+        {
+          "name": "string.quoted.double.gupta",
+          "begin": "(?<!\\d)\"",
+          "end": "\"",
+          "patterns": [
+            {
+              "name": "constant.character.escape.gupta",
+              "match": "\\\\."
+            }
+          ]
+        },
+        {
+          "name": "string.quoted.single.gupta",
+          "begin": "'",
+          "end": "'",
+          "patterns": [
+            {
+              "name": "constant.character.escape.gupta",
+              "match": "\\\\."
+            }
+          ]
+        }
+      ]
+    },
+    "literals": {
+      "patterns": [
+        {
+          "name": "constant.language.gupta",
+          "match": "\\b(TRUE|FALSE)\\b"
+        },
+        {
+          "match": "-?\\b((0(x|X)[0-9a-fA-F]*)|(([0-9]+\\.?[0-9]*)|(\\.[0-9]+))((e|E)(\\+|-)?[0-9]+)?)(L|l|UL|ul|u|U|F|f|\")?\\b",
+          "name": "constant.numeric.gupta"
+        }
+      ]
+    },
+    "comments": {
+      "patterns": [
+        {
+          "name": "comment.line.gupta",
+          "match": "\\s*!\\s+.*$"
+        }
+      ]
+    },
+    "calls": {
+      "patterns": [
+        {
+          "captures": {
+            "1": {
+              "name": "storage.type.gupta"
+            },
+            "2": {
+              "name": "entity.name.function.gupta"
+            }
+          },
+          "match": "\\b(Call)\\b\\s+((?:[a-zA-Z_x7f-xff][a-zA-Z0-9_.x7f-xff]*?\\b))\\s*(?=\\()",
+          "name": "support.function.gupta"
+        }
+      ]
+    }
+  },
+  "scopeName": "source.apl.indent"
+}
